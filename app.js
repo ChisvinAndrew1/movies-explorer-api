@@ -5,7 +5,7 @@ const mongoose = require('mongoose');
 const cookieParser = require('cookie-parser');
 const helmet = require('helmet');
 
-const NotFoundError = require('./errors/NotFoundError');
+// const NotFoundError = require('./errors/NotFoundError');
 const { errorHandler } = require('./midllewars/errorHandler');
 const { requestLogger, errorLogger } = require('./midllewars/logger');
 const router = require('./routers/index');
@@ -27,9 +27,6 @@ console.log('ghsjkd');
 app.use(requestLogger);
 app.use('/', router);
 
-app.all('*', (_req, _res, next) => {
-  next(new NotFoundError('Запрашиваемый ресурс не найден'));
-});
 app.use(errorLogger);
 
 app.use(errors());
