@@ -8,11 +8,11 @@ const userRouter = require('./users');
 router.post('/signup', signoutValidator, createUser);
 
 router.post('/signin', signinValidator, login);
+router.use(auth);
 
 router.get('/signout', (_req, res) => {
   res.clearCookie('jwt').send({ message: 'Выход' });
 });
-router.use(auth);
 router.use('/users', userRouter);
 router.use('/movies', moviesRouter);
 
