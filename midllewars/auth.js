@@ -16,7 +16,7 @@ function auth(req, _res, next) {
   let payload;
   try {
     payload = jsonwebtoken.verify(token, secret);
-    console.log({ "secret": secret });
+    // console.log({ "secret": secret });
   } catch (err) {
     return next(new Unauthorized());
   }
