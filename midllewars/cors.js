@@ -3,10 +3,10 @@ const allowedCors = [
   'http://praktikum.tk',
   'localhost:3001',
   'http://localhost:3001',
-  'https://domainname.chisvin.nomoredomains.xyz',
-  'http://domainname.chisvin.nomoredomains.xyz',
-  'https://api.domainname.chisvin.nomoredomains.xyz',
-  'https://api.domainname.chisvin.nomoredomains.xyz',
+  'https://chisvin.nomoredomains.xyz',
+  'http://chisvin.nomoredomains.xyz',
+  'https://api.chisvin.nomoredomains.xyz',
+  'https://api.chisvin.nomoredomains.xyz',
 ];
 
 function cors(req, res, next) {
