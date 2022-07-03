@@ -66,7 +66,7 @@ function login(req, res, next) {
         httpOnly: true,
         sameSite: true,
       });
-      res.send({ token });
+      res.send({ message: 'Вы успешно зарегистрировались!' });
     })
     .catch((err) => next(err));
 }
