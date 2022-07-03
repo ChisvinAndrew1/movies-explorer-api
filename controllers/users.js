@@ -1,3 +1,4 @@
+require('dotenv').config();
 const bcryptjs = require('bcryptjs');
 const jsonwebtoken = require('jsonwebtoken');
 const ConflictError = require('../errors/ConflictError');
