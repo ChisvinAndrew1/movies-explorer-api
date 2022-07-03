@@ -46,9 +46,9 @@ function updateProfile(req, res, next) {
     .then((user) => res.send(user))
     .catch((err) => {
       if (err.name === 'ValidationError') {
-        return next(new NotValidateData('Переданы некорректные данные при создании профиля'));
+        return next(new ConflictError('Пользователь с таким Email уже создан'));
       } if (err.kind === 'ObjectId') {
-        return next(new NotValidateData('Пользователь по указанному _id не найден'));
+        return next(new NotValidateData('Переданы некорректные данные при обновлении профиля'));
       }
       return next(new SomeError());
     });

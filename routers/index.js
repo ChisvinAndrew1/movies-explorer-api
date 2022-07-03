@@ -2,11 +2,11 @@ const router = require('express').Router();
 const { createUser, login } = require('../controllers/users');
 const NotFoundError = require('../errors/NotFoundError');
 const { auth } = require('../midllewars/auth');
-const { signinValidator, signoutValidator } = require('../midllewars/celebrateValidator');
+const { signinValidator, signupValidator } = require('../midllewars/celebrateValidator');
 const moviesRouter = require('./movies');
 const userRouter = require('./users');
 
-router.post('/signup', signoutValidator, createUser);
+router.post('/signup', signupValidator, createUser);
 
 router.post('/signin', signinValidator, login);
 router.use(auth);

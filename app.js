@@ -16,15 +16,15 @@ const { MONGO_DB_DEFAULT } = require('./utils/config');
 const { PORT = 3000, MONGO_DB = MONGO_DB_DEFAULT } = process.env;
 const app = express();
 app.use(express.json());
+mongoose.connect(MONGO_DB);
 
-app.use(limiter);
 app.use(cookieParser());
 app.use(helmet());
-app.use(cors);
-
-mongoose.connect(MONGO_DB);
 console.log('ghsjkd');
+
 app.use(requestLogger);
+app.use(cors);
+app.use(limiter);
 app.use('/', router);
 
 app.use(errorLogger);
