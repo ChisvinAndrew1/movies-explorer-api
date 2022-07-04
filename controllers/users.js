@@ -7,7 +7,7 @@ const NotValidateData = require('../errors/NotValidateData');
 const SomeError = require('../errors/SomeError');
 const User = require('../models/user');
 const { JWT_SECRET_DEV, SALT_ROUNDS } = require('../utils/config');
-const { CONFLICT_KEY_CODE } = require('../utils/constants');
+const { CONFLICT_KEY_CODE, errorsNotValidateData, errorsConflictError, errorsNotFoundError } = require('../utils/constants');
 
 const { NODE_ENV, JWT_SECRET } = process.env;
 
@@ -27,9 +27,9 @@ function createUser(req, res, next) {
     }))
     .catch((err) => {
       if (err.name === 'ValidationError') {
-        return next(new NotValidateData('Переданы некорректные данные при создании профиля'));
+        return next(new NotValidateData(errorsNotValidateData.errUser));
       } if (err.code === CONFLICT_KEY_CODE) {
-        return next(new ConflictError('Пользователь с таким Email уже создан'));
+        return next(new ConflictError(errorsConflictError.errUser));
       }
       return next(new SomeError());
     });
@@ -47,9 +47,9 @@ function updateProfile(req, res, next) {
     .then((user) => res.send(user))
     .catch((err) => {
       if (err.name === 'ValidationError') {
-        return next(new ConflictError('Пользователь с таким Email уже создан'));
-      } if (err.kind === 'ObjectId') {
-        return next(new NotValidateData('Переданы некорректные данные при обновлении профиля'));
+        return next(new NotValidateData(errorsNotValidateData.errUser));
+      } if (err.code === CONFLICT_KEY_CODE) {
+        return next(new ConflictError(errorsConflictError.errUser));
       }
       return next(new SomeError());
     });
@@ -66,7 +66,7 @@ function login(req, res, next) {
         httpOnly: true,
         sameSite: true,
       });
-      res.send({ message: 'Вы успешно зарегистрировались!' });
+      res.send({ message: 'Вы успешно вошли!' });
     })
     .catch((err) => next(err));
 }
@@ -76,7 +76,7 @@ function getMeInfo(req, res, next) {
   User.findById(_id)
     .then((user) => {
       if (!user) {
-        return next(new NotFoundError('Пользователь не найден'));
+        return next(new NotFoundError(errorsNotFoundError.errUser));
       }
       return res.send(user);
     })
