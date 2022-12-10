@@ -1,8 +1,9 @@
 const allowedCors = [
   'https://praktikum.tk',
   'http://praktikum.tk',
-  'localhost:3001',
-  'http://localhost:3001',
+  'localhost:3000',
+  'http://localhost:3000',
+  'https://localhost:3000',
   'https://chisvin.nomoredomains.xyz',
   'http://chisvin.nomoredomains.xyz',
   'https://api.chisvin.nomoredomains.xyz',

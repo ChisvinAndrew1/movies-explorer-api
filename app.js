@@ -13,7 +13,7 @@ const { cors } = require('./midllewars/cors');
 const limiter = require('./midllewars/limiter');
 const { MONGO_DB_DEFAULT } = require('./utils/config');
 
-const { PORT = 3000, MONGO_DB = MONGO_DB_DEFAULT } = process.env;
+const { PORT = 3001, MONGO_DB = MONGO_DB_DEFAULT } = process.env;
 const app = express();
 app.use(express.json());
 mongoose.connect(MONGO_DB);

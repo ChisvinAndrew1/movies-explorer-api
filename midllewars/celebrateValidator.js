@@ -25,7 +25,7 @@ const patchUserValidator = celebrate({
 
 const deleteMoviesValidator = celebrate({
   params: Joi.object().keys({
-    movieId: Joi.number().integer().required(),
+    movieId: Joi.string().required().length(24).hex(),
   }),
 });
 
