@@ -24,6 +24,7 @@ function createUser(req, res, next) {
     .then(() => res.send({
       email,
       name,
+      password,
     }))
     .catch((err) => {
       if (err.name === 'ValidationError') {
